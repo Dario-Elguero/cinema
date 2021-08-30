@@ -6,6 +6,7 @@ const dataUser = require("../../verify/validUser");
 const validId = require("../../verify/validId");
 const userSQL = require("../../querySql/userSql");
 const TYPE = require("../../querySql/types");
+const verifyToken = require("../../verify/validToken");
 const connect = connection();
 // const { connect } = require('../../app')
 const router = Router();
@@ -79,6 +80,54 @@ router.put("/:id", validId, (req, res, next) => {
         });
     }
   });
+});
+
+router.post("/favorite", verifyToken, (req, res, next) => {
+  if (req.userRol === 1 || req.userRol === 2) {
+    const { idMovie } = req.body;
+    let userId = req.userId;
+    let sql = userSQL(TYPE.ADDFAV_USER);
+
+    connect.query(sql,[userId,idMovie], (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send("Internal server error");
+        }
+        res
+            .status(200)
+            .json({ Save: true, favorite: "The favorite is salved" });
+        
+    });
+        
+  } else {
+    res
+      .status(400)
+      .json({ add: false, Error: "Only The registered user can add a favorite" });
+  }
+});
+
+router.delete("/favorite", verifyToken, (req, res, next) => {
+  if (req.userRol === 1 || req.userRol === 2) {
+    const { idMovie } = req.body;
+    let userId = req.userId;
+    let sql = userSQL(TYPE.DELETEFAV_USER);
+
+    connect.query(sql,[userId,idMovie], (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send("Internal server error");
+        }
+        res
+            .status(200)
+            .json({ Save: true, favorite: "The favorite is deleted" });
+        
+    });
+        
+  } else {
+    res
+      .status(400)
+      .json({ add: false, Error: "Only The registered user can deleted a favorite" });
+  }
 });
 
 router.delete("/:id", validId, (req, res, next) => {

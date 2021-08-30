@@ -33,6 +33,14 @@ const userSQL = (query) => {
     case TYPE.REGISTER_USER:
         return `INSERT IGNORE INTO users(mail, password, rol_id)
                 VALUE (?, ?, ?)`;
+    
+    case TYPE.ADDFAV_USER:
+        return `INSERT IGNORE INTO favorites(user_id, movie_id)
+                VALUE (?, ?)`;
+                
+    case TYPE.DELETEFAV_USER:
+        return `DELETE FROM favorites
+                WHERE user_id = ? AND movie_id = ?`;
 
     default:
       break;
