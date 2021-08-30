@@ -1,0 +1,23 @@
+{
+    "parserOptions": { 
+      "ecmaVersion": 2018 
+    },
+    "env": {
+      "browser":true,
+      "commonjs": true,
+      "es6": true, 
+      "node": true, 
+      "mocha": true 
+    }, 
+    "parser": "babel-eslint", 
+    "rules": { 
+      "no-console": "warn", 
+      "no-use-before-define": "warn", 
+      "spaced-comment": "warn",
+      "semi":"warn",
+      "quotes":["error", "doble"]
+    }, 
+    "extends": [ 
+      "standard" 
+    ]
+  } 
