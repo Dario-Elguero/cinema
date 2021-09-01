@@ -4,6 +4,7 @@ const { SECRET } = process.env;
 
 function verifyToken(req, res, next ) {
     const token = req.headers["x-access-token"];
+    
   if (token) {
     const decoded = jwt.verify(token, SECRET);
     if (decoded) {

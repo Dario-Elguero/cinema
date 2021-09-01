@@ -11,6 +11,32 @@ const connect = connection();
 // const { connect } = require('../../app')
 const router = Router();
 
+router.get("/favorites", verifyToken, (req, res, next) => {
+  if (req.userRol === 1 || req.userRol === 2) {
+    sql = userSQL(TYPE.FIND_FAV_USER);
+    
+      connect.query(sql, [req.userId], (err, result) => {
+        if (err) {
+          res.status(500).send("Internal server error - update");
+        }
+        
+        if (result.length > 0) {
+          res
+            .status(200)
+            .json({
+              user: true,
+              result
+            });
+        }
+      });
+
+  } else {
+    res
+      .status(400)
+      .json({ add: false, Error: "Only The registered user can view a favorite" });
+  }
+})
+
 router.get("/", (req, res, next) => {
   
   const sql = userSQL(TYPE.SELECT_ALL_USERS);
@@ -82,17 +108,19 @@ router.put("/:id", validId, (req, res, next) => {
   });
 });
 
+
 router.post("/favorite", verifyToken, (req, res, next) => {
   if (req.userRol === 1 || req.userRol === 2) {
     const { idMovie } = req.body;
     let userId = req.userId;
     let sql = userSQL(TYPE.ADDFAV_USER);
-
+    
     connect.query(sql,[userId,idMovie], (err, result) => {
         if (err) {
           console.log(err);
           return res.status(500).send("Internal server error");
         }
+        console.log(result)
         res
             .status(200)
             .json({ Save: true, favorite: "The favorite is salved" });
@@ -109,7 +137,9 @@ router.post("/favorite", verifyToken, (req, res, next) => {
 router.delete("/favorite", verifyToken, (req, res, next) => {
   if (req.userRol === 1 || req.userRol === 2) {
     const { idMovie } = req.body;
+    
     let userId = req.userId;
+    console.log('movie:',idMovie, 'id:',userId)
     let sql = userSQL(TYPE.DELETEFAV_USER);
 
     connect.query(sql,[userId,idMovie], (err, result) => {
@@ -119,14 +149,14 @@ router.delete("/favorite", verifyToken, (req, res, next) => {
         }
         res
             .status(200)
-            .json({ Save: true, favorite: "The favorite is deleted" });
+            .json({ delete: true, favorite: "The favorite is deleted" });
         
     });
         
   } else {
     res
       .status(400)
-      .json({ add: false, Error: "Only The registered user can deleted a favorite" });
+      .json({ delete: false, Error: "Only The registered user can deleted a favorite" });
   }
 });
 

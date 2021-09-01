@@ -27,11 +27,11 @@ router.post("/login", (req, res, next) => {
       let rol = result[0].rol
       
       const token = jwt.sign({ id, rol }, SECRET, {
-        expiresIn: 60 * 60,
+        expiresIn: 60 * 60 * 4,
       });
       return res.status(200).json({ Auth: true, Token: token });
     }else{
-      return res.status(400).send("User or Password invalid");
+      return res.status(405).send("User or Password invalid");
     }
   })
 });

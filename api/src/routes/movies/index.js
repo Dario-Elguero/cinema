@@ -43,8 +43,8 @@ const structureMovie = (result) => {
 };
 
 router.get("/", (req, res, next) => {
-  let accept = req.headers["x-access-token"];
-  console.log(accept);
+  //let accept = req.headers["x-access-token"];
+  // console.log(accept);
   const sql = movieSQL(TYPE.SELECT_ALL_MOVIES);
 
   connect.query(sql, (err, result) => {

@@ -35,12 +35,17 @@ const userSQL = (query) => {
                 VALUE (?, ?, ?)`;
     
     case TYPE.ADDFAV_USER:
-        return `INSERT IGNORE INTO favorites(user_id, movie_id)
-                VALUE (?, ?)`;
-                
+        return `INSERT INTO favorites(user_id, movie_id)
+                VALUE (?,?)`;
+
     case TYPE.DELETEFAV_USER:
         return `DELETE FROM favorites
                 WHERE user_id = ? AND movie_id = ?`;
+    
+    case TYPE.FIND_FAV_USER:
+      return `SELECT * FROM movies AS m
+              INNER JOIN favorites AS f ON f.movie_id = m.id
+              WHERE f.user_id = ?`;
 
     default:
       break;
