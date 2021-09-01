@@ -1,0 +1,38 @@
+.containerFavorites{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.containerMovieFav {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    box-shadow: 3px 3px 5px grey;
+    width: 160px;
+    justify-content: space-between;
+    background-color: black;
+    color: aliceblue;
+}
+.titleMoviesFav {
+    padding: 7px;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: #80808059;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleMoviesFav .icoFav{
+    font-size: 1rem;
+    background-color: #ff0000cc;
+}
+
+.imageMoviesFav{
+    display: flex;
+    width: 10rem;
+}
+.imageMoviesFav img{
+    width: 100%;
+}

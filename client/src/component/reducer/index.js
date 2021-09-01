@@ -28,6 +28,14 @@ function rootReducer(state = initialState, action) {
     };
   }
 
+  if (action.type === "ADD_MOVIE") {
+    
+    return {
+      ...state,
+      movies: [action.payload,...state.movies]
+      };
+  }
+
   if (action.type === "ADD_FAV") {
     
     const movie = {...state.movies.find(mov =>  mov.id === action.payload.id)}

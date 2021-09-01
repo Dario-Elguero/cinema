@@ -134,3 +134,31 @@ export function addFavorite(token,idMovie){
       }
   }
 }
+
+export function addMovie(newMovie){
+  return async function(dispatch){
+    try {
+      const token = sessionStorage.getItem('token')
+      const favorites = await axios({
+        method: 'post',
+        url: `http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/movies`,
+        data: {newMovie},
+        headers:{
+          "x-access-token":token
+        }
+      })
+      if(favorites.status === 200){
+        dispatch({type:'ADD_MOVIE', payload:newMovie})
+      }
+      
+  } catch (error) {
+      console.log(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'No se pudo agregar',
+        text: 'algo salio mal',
+        footer: '<a href="">WARNING?</a>'
+      })
+  }
+}
+}

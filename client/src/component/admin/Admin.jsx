@@ -1,9 +1,10 @@
-import React from 'react'
+import Form from './form/Form';
+import "./admin.css";
 
 const Admin = () => {
     return (
-        <div>
-            Aca va el Admin
+        <div className="containerAdmin">
+            <Form/>
         </div>
     )
 }

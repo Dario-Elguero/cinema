@@ -158,7 +158,8 @@ router.delete("/:id", validId, verifyToken, (req, res, next) => {
 
 router.post("/", verifyToken, (req, res, next) => {
   if (req.userRol === 1) {
-    const { title, image, year, description, country, genres } = req.body;
+    
+    const { title, image, year, description, country, genres } = req.body.newMovie;
     let value = [];
     let sql = movieSQL(TYPE.INSERT_MOVIE);
 
