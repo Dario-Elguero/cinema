@@ -1,11 +1,12 @@
 
 const initialState = {
     favorite: [],
-    movies: [], 
+    movies: [],
+    userToken:"" 
 };
 
 function rootReducer(state = initialState, action) {
-    
+    console.log(action)
     if (action.type === "GET_MOVIES") {
         return {
           ...state,
@@ -19,28 +20,39 @@ function rootReducer(state = initialState, action) {
       detail: action.payload
     };
   }
+
+  if (action.type === "FIND_FAV") {
+    return {
+      ...state,
+      favorite: action.payload
+    };
+  }
+
   if (action.type === "ADD_FAV") {
     return {
       ...state,
       favorite: [action.payload,...state.favorite]
-    };
+      };
   }
-  if (action.type === "FIND_CLIMA") {
+
+  if (action.type === "LOGIN_IN") {
     return {
       ...state,
-      clima: [action.payload,...state.clima]
+      userToken: action.payload
     };
   }
-  if (action.type === "FIRST") {
+
+  if (action.type === "LOGOUT") {
     return {
       ...state,
-      first: action.payload
+      userToken: action.payload
     };
   }
-  if (action.type === "REMOVE_FAV") {
+
+  if (action.type === "DELETE_FAV") {
     return {
       ...state,
-      favorite: state.favorite.filter(movie => movie.id !== action.payload)
+      favorite: state.favorite.filter(movie => movie.id !== Number(action.payload))
     };
   }
     

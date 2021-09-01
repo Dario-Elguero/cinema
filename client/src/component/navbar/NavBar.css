@@ -6,6 +6,7 @@
     background-color: #303236;
     display: flex;
     justify-content: space-between;
+    text-align: center;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
@@ -36,7 +37,7 @@
 
 .list-item a {
     color: white;
-    height: 100%;
+    /* height: 100%; */
     padding: 23px 10px;
     border-bottom: 4px solid transparent;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;

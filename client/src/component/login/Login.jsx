@@ -1,19 +1,43 @@
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { loginUser, myFavorites } from "../action";
+import {useHistory} from 'react-router-dom';
+import './login.css';
 
 
 const Login = () => {
     const [user, setUser] = useState()
+    const history = useHistory()
     const dispatch = useDispatch()
     useEffect(() => {
         
-        
     }, [])
+
+    const [signState, setSignState] = useState({
+      email: "",
+      password: "",
+    });
+
+    const handleInputChange = ({ target }) => {
+      setSignState({
+        ...signState,
+        [target.name]: target.value,
+      });
+    };
+
+    const { email, password } = signState;
+
+    const handleSignIn = async (e) => {
+      e.preventDefault();
+      await dispatch(loginUser(email, password));
+      history.push('/')
+      dispatch(myFavorites(sessionStorage.getItem('token')))
+    };
 
     return (
         <div className="form-container">
-      <form onSubmit="" className="form">
+      <form onSubmit={handleSignIn} className="form">
         <h5>Login</h5>
         <div className="form-group">
           <input
@@ -22,6 +46,7 @@ const Login = () => {
             className="form-control"
             autoComplete="off"
             placeholder="E-mail"
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -31,6 +56,7 @@ const Login = () => {
             name="password"
             className="form-control"
             placeholder="Password"
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -40,24 +66,10 @@ const Login = () => {
           </button>
           
         </div>
-        <div>
-          <p>Login whit social networks</p>
-          <div className="google-btn" >
-            <div className="google-icon-wrapper">
-              <img
-                className="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                alt="google button"
-              />
-            </div>
-            <p className="btn-text">
-              <b>Sign in with google</b>
-            </p>
-          </div>
-        </div>
+        
         <Link to='/register'>
           <div className="a-link a__signin">
-            <a href="#">Create New Account</a>
+            Create New Account
             <br />
           </div>
         </Link>

@@ -1,0 +1,39 @@
+.containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 650px;
+}
+.containerMovie {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    box-shadow: 3px 3px 5px grey;
+}
+.titleMovies {
+    padding: 7px;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: #80808059;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.icoFav {
+    font-size: 1.7rem;
+    border-radius: 100%;
+    background-color: rgba(240, 227, 227, 0.61);
+}
+.on{
+    color: crimson;
+}
+.off{
+    color: rgb(44, 32, 32)
+}
+.imageMovies{
+    display: flex;
+    width: 15rem;
+}
+.imageMovies img{
+    width: 100%;
+}

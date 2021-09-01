@@ -1,13 +1,103 @@
-body {
+* {
+  /* border: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box; */
+  /* color: #222; */
+  margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  
+  font-size: 15px;
+  
+}
+ a:link, a:visited, a:active {
+  text-decoration:none;
+} 
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+}
+/* .btn{
+  background-color: rgb(8, 189, 84);
+  font-weight: bold;
+  color: rgb(230, 230, 230);
+  width: 60px;
+  height: 30px;
+  border-radius: 8px;
+  text-shadow: 2px 2px 5px rgb(47, 45, 49);
+  box-shadow: 1px 2px 5px black;
+} */
+.btnhome{
+  width: 80px;
+  height: 30px;
+  border-radius: 15px;
+}
+.clear{
+  background-color: red;
+}
+.info{
+  background-color: cadetblue;
+}
+
+.error {
+  background-color: pink;
+  font-size: 1rem;
+  color: #666;
+  padding: 10px;
+  border-radius: 3px;
+  /* font-weight: bold; */
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 20px;
+  /* align-content: center; */
+  display: flex;
+  text-align: center;
+}
+
+.error span {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bounce {
+  animation: bounce 1s;
+}
+.containerNoFound{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+@keyframes bounce {
+  0% {
+      transform:translateY(-100%);
+      opacity: 0;
+  }
+
+  5% {
+      transform:translateY(-100%);
+      opacity: 0;
+  }
+
+  15% {
+      transform:translateY(0);
+      padding-bottom: 5px;
+  }
+
+  30% {
+      transform:translateY(-50%);
+  }
+
+  100% {
+    transform:translateY(0);
+    padding-bottom: 9px;
+    opacity: 1;
+  }
+ 
 }

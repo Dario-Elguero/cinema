@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 require("dotenv").config();
 const { REACT_APP_LOCALHOST,REACT_APP_PORT_BACK } = process.env;
 
@@ -17,19 +18,119 @@ export function allMovies(){
 export function allMovies2(){
     return async function(dispatch){
     try {
-        const dataMovies = await axios.get(`http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/movies`,{
-            headers:{
-                "x-access-token":"aca va la credencial"
-            }
-        })
+        const dataMovies = await axios.get(`http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/movies`)
             if(dataMovies.status === 200){
-              dispatch({type:'GET_MOVIES', payload: dataMovies})
-            }else{
-                console.log('nada')
+              dispatch({type:'GET_MOVIES', payload: dataMovies.data})
             }
             
         } catch (error) {
             console.log(error)
         }
     }
+}
+
+export function loginUser(mail,password){
+  return async function(dispatch){
+    
+  try {
+    
+      const dataUser = await axios.post(`http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/login`,{
+          mail,password})
+          if(dataUser.status === 200){
+            sessionStorage.setItem('token', dataUser.data.Token)
+            dispatch({type:'LOGIN_IN', payload: dataUser.data.Token})
+          }
+          
+      } catch (error) {
+          
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'User or Password is invalid',
+          footer: '<a href="">WARNING?</a>'
+        })
+      }
+  }
+}
+
+export function myFavorites(token){
+  return async function(dispatch){
+    try {
+      const favorites = await axios.get(`http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/user/favorites`,{
+          headers:{
+              "x-access-token":token
+          }
+      })
+          if(favorites.status === 200){
+            dispatch({type:'FIND_FAV', payload: favorites.data.result})
+          }
+          
+      } catch (error) {
+          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'No encontro Favoritos',
+            text: 'algo salio mal',
+            footer: '<a href="">WARNING?</a>'
+          })
+      }
+  }
+}
+
+export function removeFavorite(token,idMovie){
+  return async function(dispatch){
+    try {
+      const favorites = await axios.delete(`http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/user/favorite`,
+      {
+        data:{
+        "idMovie":idMovie
+        },
+          headers:{
+              "x-access-token":token
+          }
+      })
+      
+          if(favorites.status === 200){
+            dispatch({type:'DELETE_FAV', payload:idMovie})
+          }
+          
+      } catch (error) {
+          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo sacar favorito',
+            text: 'algo salio mal',
+            footer: '<a href="">WARNING?</a>'
+          })
+      }
+  }
+}
+
+export function addFavorite(token,idMovie){
+  return async function(dispatch){
+    try {
+      
+      const favorites = await axios({
+        method: 'post',
+        url: `http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/user/favorite`,
+        data: {"idMovie":idMovie},
+        headers:{
+          "x-access-token":token
+        }
+      })
+        
+          if(favorites.status === 200){
+            dispatch({type:'ADD_FAV', payload:{id:Number(idMovie)}})
+          }
+          
+      } catch (error) {
+          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo sacar favorito',
+            text: 'algo salio mal',
+            footer: '<a href="">WARNING?</a>'
+          })
+      }
+  }
 }
