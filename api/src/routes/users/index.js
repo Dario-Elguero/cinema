@@ -120,7 +120,7 @@ router.post("/favorite", verifyToken, (req, res, next) => {
           console.log(err);
           return res.status(500).send("Internal server error");
         }
-        console.log(result)
+        
         res
             .status(200)
             .json({ Save: true, favorite: "The favorite is salved" });
@@ -139,7 +139,6 @@ router.delete("/favorite", verifyToken, (req, res, next) => {
     const { idMovie } = req.body;
     
     let userId = req.userId;
-    console.log('movie:',idMovie, 'id:',userId)
     let sql = userSQL(TYPE.DELETEFAV_USER);
 
     connect.query(sql,[userId,idMovie], (err, result) => {
