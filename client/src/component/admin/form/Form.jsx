@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMovie } from "../../action";
+import poster from "../../img/poster-cinema.png"
 
 const Form = () => {
   const dispatch = useDispatch()
 const handleSubmit = (e)=>{
   e.preventDefault()
-  alert('entro')
   dispatch(addMovie(newMovie))
 }
 const initialState = {
     title:"",
     year:"",
-    image:"",
+    image:"" || poster,
     description:"",
     country:"",
     genres:[1]
@@ -63,7 +63,7 @@ const handleChange = (e) => {
               className="imputImages"
               name="image"
               placeholder="URL image"
-              required
+              
             />
           </div>
 

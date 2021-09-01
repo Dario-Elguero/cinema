@@ -123,7 +123,7 @@ router.post("/favorite", verifyToken, (req, res, next) => {
         
         res
             .status(200)
-            .json({ Save: true, favorite: "The favorite is salved" });
+            .json({ Save: true, favorite: "The favorite is salved", result });
         
     });
         

@@ -139,15 +139,30 @@ export function addMovie(newMovie){
   return async function(dispatch){
     try {
       const token = sessionStorage.getItem('token')
-      const favorites = await axios({
+      const movie = await axios({
         method: 'post',
         url: `http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/movies`,
-        data: {newMovie},
+        data: {
+          "title":newMovie.title,
+          "image":newMovie.image,
+          "year":newMovie.year,
+          "description":newMovie.description,
+          "country":newMovie.country,
+          "genres":newMovie.genres
+        },
         headers:{
           "x-access-token":token
         }
       })
-      if(favorites.status === 200){
+      if(movie.status === 200){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'The Movie has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        newMovie.id = movie.data.idInserted;
         dispatch({type:'ADD_MOVIE', payload:newMovie})
       }
       

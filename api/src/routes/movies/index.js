@@ -159,10 +159,10 @@ router.delete("/:id", validId, verifyToken, (req, res, next) => {
 router.post("/", verifyToken, (req, res, next) => {
   if (req.userRol === 1) {
     
-    const { title, image, year, description, country, genres } = req.body.newMovie;
+    const { title, image, year, description, country, genres } = req.body //.newMovie;
     let value = [];
     let sql = movieSQL(TYPE.INSERT_MOVIE);
-
+    let idInserted = 0
     connect.query(
       sql,
       [title, image, year, description, country],
@@ -171,6 +171,7 @@ router.post("/", verifyToken, (req, res, next) => {
           console.log(err);
           return res.status(500).send("Internal server error");
         }
+        idInserted = result.insertId
         genres.map((genre) => {
           value.push([result.insertId, genre]);
         });
@@ -182,7 +183,7 @@ router.post("/", verifyToken, (req, res, next) => {
           }
           res
             .status(200)
-            .json({ Save: true, movie: "The movie is salved", result });
+            .json({ Save: true, movie: "The movie is salved", idInserted });
         });
       }
     );

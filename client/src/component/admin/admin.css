@@ -4,6 +4,7 @@
     text-align: center;
     align-items: center;
     align-content: center;
+    flex-direction: column;
 }
 
 .containerAdmin input{
@@ -17,4 +18,18 @@
     margin-top: 10px;
     align-items: center;
     
+}
+
+.headerAdmin{
+    display: flex;
+    background-color: chocolate;
+    width: 80%;
+    height: 45px;
+    color: cornsilk;
+    font-size: 1.8rem;
+    align-items: center;
+    justify-content: center;
+    border:1px solid crimson;
+    box-shadow: 1px 0px 4px black;
+
 }
