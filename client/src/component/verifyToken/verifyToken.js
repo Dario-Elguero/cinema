@@ -5,7 +5,8 @@ export const verifyToken = (token) => {
     //const history = useHistory()
   try {
     const decoded = jsonwebtoken.verify(token, REACT_APP_SECRET);
-    return decoded.id;
+    
+    return decoded.rol;
   } catch (error) {
     sessionStorage.removeItem("token");
     //history.push("/");

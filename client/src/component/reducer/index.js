@@ -6,7 +6,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-    console.log(action)
+    
     if (action.type === "GET_MOVIES") {
         return {
           ...state,
@@ -29,9 +29,12 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === "ADD_FAV") {
+    
+    const movie = {...state.movies.find(mov =>  mov.id === action.payload.id)}
+    
     return {
       ...state,
-      favorite: [action.payload,...state.favorite]
+      favorite: [movie,...state.favorite]
       };
   }
 
