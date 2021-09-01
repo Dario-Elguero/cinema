@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { loginUser, myFavorites } from "../action";
+import { loginUser, myFavorites } from "../../redux/action";
 import {useHistory} from 'react-router-dom';
 import './login.css';
 

@@ -1,7 +1,7 @@
 .App {
     display: flex;
     flex-direction: column;
-    background-image: url('../src/component/img/fondo-cine.jpg');
+    background-image: url('../src/img/fondo-cine.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;

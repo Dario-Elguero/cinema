@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux"; //se saco compose
-import rootReducer from "../reducer/index";
+import rootReducer from "../redux/reducer";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from 'redux-devtools-extension';
 

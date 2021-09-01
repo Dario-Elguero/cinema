@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../action';
+import { addFavorite, removeFavorite } from '../../../redux/action';
 import './cardmovies.css';
 
 const CardMovie = ({movies}) => {

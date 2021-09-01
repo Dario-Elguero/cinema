@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import logocinema from '../img/logo-cinema.png';
-import { allMovies, allMovies2, myFavorites } from '../action';
+import logocinema from '../../img/logo-cinema.png';
+import { allMovies, allMovies2, myFavorites } from '../../redux/action';
 import {useHistory} from 'react-router-dom';
 import {verifyToken} from '../verifyToken/verifyToken';
 //import jsonwebtoken from 'jsonwebtoken';

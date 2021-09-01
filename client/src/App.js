@@ -1,14 +1,14 @@
 import {Redirect, Route, Switch} from 'react-router-dom';
 import NavBar from '../src/component/navbar/NavBar';
 import Login from './component/login/Login';
-
-import './App.css';
 import ContainerMovie from './component/containerMovie/ContainerMovie';
 import PageNotFound from './component/PageNotFound';
 import Favorite from './component/favorite/Favorite';
 import Admin from './component/admin/Admin';
 import PrivateRouteAdmin from './component/PrivateRouteAdmin';
 import PrivateRouteUsers from './component/PrivateRouteUsers';
+
+import './App.css';
 
 
 function App() {

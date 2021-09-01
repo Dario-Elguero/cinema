@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addMovie } from "../../action";
-import poster from "../../img/poster-cinema.png"
+import { addMovie } from "../../../redux/action";
+import poster from "../../../img/poster-cinema.png"
 
 const Form = () => {
   const dispatch = useDispatch()
