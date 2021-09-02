@@ -28,6 +28,7 @@ const DetailMovie = () => {
                 </div>
                 <img className="poster" src={movieSelect?.image} alt={movieSelect?.title} />
             <div className="containerDescript">
+                <span>{movieSelect?.year}</span>
                 <span className="description">
                     {movieSelect?.description}
                 </span>
