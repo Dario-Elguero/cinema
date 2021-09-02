@@ -1,4 +1,4 @@
-
+import Swal from 'sweetalert2';
 const initialState = {
     favorite: [],
     movies: [],
@@ -34,6 +34,25 @@ function rootReducer(state = initialState, action) {
       ...state,
       findedMovie: action.payload
     };
+  }
+  if (action.type === "FIND_TITLE_MOVIE") {
+    const movies = state.movies.filter(movie => movie?.title?.toLowerCase().includes(action.payload.toLowerCase()))
+    if(movies.length > 0){
+      return {
+        ...state,
+        movies: movies
+      };
+    }else{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'No match',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
+    }
+
   }
 
   if (action.type === "ADD_MOVIE") {

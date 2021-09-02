@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import logocinema from '../../img/logo-cinema.png';
-import { allMovies, allMovies2, myFavorites } from '../../redux/action';
+import { allMovies, allMovies2, findNameMovie, myFavorites } from '../../redux/action';
 import {useHistory} from 'react-router-dom';
 import {verifyToken} from '../verifyToken/verifyToken';
 //import jsonwebtoken from 'jsonwebtoken';
@@ -12,6 +12,7 @@ export default function NavBar() {
     const [title, setTitle] = useState()
     const [user, setUser] = useState()
     const history = useHistory()
+    
     const HandleLogin  = () =>{
         history.push('/login')
     }
@@ -20,8 +21,17 @@ export default function NavBar() {
       sessionStorage.removeItem('token')
       dispatch({type:'LOGOUT', payload: ""})
       history.push('/')
+    }
 
-  }
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(findNameMovie(title))
+    }
+
+    const handleAllMovie = (e) =>{
+      e.preventDefault();
+      dispatch(allMovies2())
+    }
 
     //const userToken = useSelector(store => store.userToken)
     const userToken = sessionStorage.getItem('token')
@@ -40,8 +50,10 @@ export default function NavBar() {
             <div className="logocinema">
                 <img className="logoIco" id="logo" src={logocinema} alt="cinema" />
             </div>
-            
-        <form className="form-container-navbar" >
+            <div className="buttonAll">
+              <button onClick={handleAllMovie} className="btn btnhome">All Movie</button>
+            </div>
+        <form className="form-container-navbar" onSubmit={handleSubmit}>
           <div>
             <input
               className="inputSearch"
