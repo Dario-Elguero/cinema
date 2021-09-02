@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom";
 import { removeFavorite } from "../../redux/action";
 import "./favorite.css";
 
@@ -21,9 +22,11 @@ const Favorite = () => {
                     {movie.title}
                        <button name="remove" id={movie.id} onClick={handleRemove} className="icoFav">X</button>
                 </div>
-                <div className="imageMoviesFav">
-                    <img src={movie.image} alt={movie.title} />
-                </div>
+                <Link to={`/movie/detail/${movie.id}`}>
+                    <div className="imageMoviesFav">
+                        <img src={movie.image} alt={movie.title} />
+                    </div>
+                </Link>
             </div>
             )}
         </div>

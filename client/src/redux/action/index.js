@@ -177,3 +177,19 @@ export function addMovie(newMovie){
   }
 }
 }
+
+export function findMovie(idMovie){
+  return async function(dispatch){
+  try {
+    const movie = await axios({
+      method: 'get',
+      url: `http://${REACT_APP_LOCALHOST}:${REACT_APP_PORT_BACK}/movies/${idMovie}`})
+          if(movie.status === 200){
+            dispatch({type:'FIND_MOVIE', payload: movie.data})
+          }
+          
+      } catch (error) {
+          console.log(error)
+      }
+  }
+}

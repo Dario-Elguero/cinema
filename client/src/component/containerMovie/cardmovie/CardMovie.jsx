@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addFavorite, removeFavorite } from '../../../redux/action';
 import './cardmovies.css';
 
@@ -34,7 +35,9 @@ const dispatch = useDispatch()
                 }
                 </div>
                 <div className="imageMovies">
-                    <img src={movie.image} alt={movie.title} />
+                    <Link to={`/movie/detail/${movie.id}`}>
+                        <img src={movie.image} alt={movie.title} />
+                    </Link>
                 </div>
             </div>
             )}

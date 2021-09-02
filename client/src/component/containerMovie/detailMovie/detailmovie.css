@@ -1,0 +1,45 @@
+.containerDet {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    margin-top: 15px;
+}
+.titleDet {
+    display: flex;
+    color: #d3eef1;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0;
+    background-color: #000000b0;
+    text-shadow: 1px 1px 4px #000000;
+    font-family: fantasy;
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0px 3px 4px blueviolet;
+}
+.imgMov {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 315px;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+img.poster {
+    width: 100%;
+}
+.containerDescript {
+    display: flex;
+    background-color: #000000bf;
+    width: 100%;
+    color: antiquewhite;
+    font-size: 1.3rem;
+    flex-direction: column;
+    position: absolute;
+}
+span.description {
+    padding: 30px;
+}

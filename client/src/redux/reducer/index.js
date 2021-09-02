@@ -2,6 +2,7 @@
 const initialState = {
     favorite: [],
     movies: [],
+    findedMovie:[],
     userToken:"" 
 };
 
@@ -25,6 +26,13 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       favorite: action.payload
+    };
+  }
+
+  if (action.type === "FIND_MOVIE") {
+    return {
+      ...state,
+      findedMovie: action.payload
     };
   }
 

@@ -42,6 +42,24 @@ const structureMovie = (result) => {
   return movies;
 };
 
+router.get("/:id", validId, (req, res, next) => {
+  const { id } = req.params;
+
+  const sql = movieSQL(TYPE.SELECT_MOVIE_BY_ID);
+
+  connect.query(sql, [Number(id)], (err, result) => {
+    if (err) {
+      res.status(500).send("Internal server error");
+    }
+    if (result.length > 0) {
+      const structure = structureMovie(result);
+      res.status(200).json(structure);
+    } else {
+      res.status(404).send("ID Nonexistent");
+    }
+  });
+});
+
 router.get("/", (req, res, next) => {
   //let accept = req.headers["x-access-token"];
   // console.log(accept);
@@ -60,23 +78,6 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.get("/:id", validId, (req, res, next) => {
-  const { id } = req.params;
-
-  const sql = movieSQL(TYPE.SELECT_MOVIE_BY_ID);
-
-  connect.query(sql, [Number(id)], (err, result) => {
-    if (err) {
-      res.status(500).send("Internal server error");
-    }
-    if (result.length > 0) {
-      const structure = structureMovie(result);
-      res.status(200).json(structure);
-    } else {
-      res.status(404).send("ID Nonexistent");
-    }
-  });
-});
 
 router.put("/:id", validId, verifyToken, validMovies, (req, res, next) => {
   if (req.userRol === 1) {
