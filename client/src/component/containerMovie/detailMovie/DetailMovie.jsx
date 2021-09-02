@@ -12,12 +12,10 @@ const DetailMovie = () => {
     const [movieSelect, SetMovieSelect] = useState()
     
     useEffect(() => {
-        console.log(movieSelect)
         if (!movieSelect){
             dispatch(findMovie(id))
         }
         SetMovieSelect(movies.find(mov => mov.id === Number(id)))
-        console.log(movieSelect)
     }, [])
 
     return (
